@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using PagedList;
 
 namespace MVC5Course.Controllers
 {
@@ -16,7 +17,7 @@ namespace MVC5Course.Controllers
 
         // GET: Clients1
         public ActionResult Index(int CreditRatingFilter = -1,
-            string LastNameFilter="")
+            string LastNameFilter="",int pageNO =1)
         {
             var ratings = (from p in db.Client
                            select p.CreditRating)
@@ -43,7 +44,9 @@ namespace MVC5Course.Controllers
                 client = client.Where(p => p.LastName == LastNameFilter);
             }
 
-            return View(client.Take(10));
+
+            ViewData.Model = client.OrderByDescending(p=>p.ClientId).ToPagedList(pageNO, 10);
+            return View();
         }
 
         // GET: Clients1/Details/5
