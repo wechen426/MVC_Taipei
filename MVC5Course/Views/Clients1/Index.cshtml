@@ -71,4 +71,4 @@
 
 </table>
 
-@Html.PagedListPager(Model as IPagedList,(p)=> Url.Action("Index",new { pageNO=p}))
+@Html.PagedListPager(Model as IPagedList,(p)=> Url.Action("Index",new { pageNO=p , CreditRatingFilter =ViewBag.CreditRatingFilterPara , LastNameFilter =ViewBag.LastNameFilterPara }))

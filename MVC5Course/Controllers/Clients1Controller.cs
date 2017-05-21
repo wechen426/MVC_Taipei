@@ -33,6 +33,8 @@ namespace MVC5Course.Controllers
 
             ViewBag.LastNameFilter = new SelectList(lastNames);
 
+            ViewBag.LastNameFilterPara = LastNameFilter;
+            ViewBag.CreditRatingFilterPara = CreditRatingFilter;
             var client = db.Client.AsQueryable();
 
             if (CreditRatingFilter >= 0)
